@@ -273,25 +273,32 @@ button:hover {
   color: #f0a500;
 }
 
-/*************  ✨ Codeium Command 🌟  *************/
 @media (max-width: 768px) {
   .cabecera {
-    flex-direction: column;
-    align-items: center;
-  }
-  .cabecera .logo:hover + .menu-header {
-    display: flex;
-  }
-  .cabecera .menu-header {
-    display: none;
-    flex-direction: column;
     position: fixed;
     top: 0;
-    left: 0;
     right: 0;
-    bottom: 0;
-    background-color: rgba(38, 39, 43, 0.9);
-    z-index: 1001;
+    left: 0;
+    z-index: 1000;
+    background-color: rgba(0, 0, 0, 0.9);
+    padding: 10px 20px;
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+  }
+
+  .cabecera .menu-header {
+    display: none;
+    position: absolute;
+    top: 100%;
+    right: 0;
+    left: 0;
+    background-color: rgba(0, 0, 0, 0.9);
+    padding: 20px;
+    width: 100%;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
   }
 
   .cabecera .menu-header.show {
@@ -300,31 +307,25 @@ button:hover {
 
   .cabecera .menu-header a {
     padding: 10px 20px;
-    width: 100%;
     text-align: center;
+    width: 100%;
+    color: #fff;
+    text-decoration: none;
+    transition: background-color 0.3s ease;
+  }
+
+  .cabecera .menu-header a:hover {
+    background-color: rgba(240, 165, 0, 0.9);
   }
 
   .cabecera .logo {
-    margin-bottom: 20px;
+    position: relative;
+    z-index: 1001;
+    width: 150px;
   }
 
-  .cabecera .menu-header.show + * {
-    pointer-events: none;
-  }
-
-  .cabecera .menu-header.show ~ *:not(.menu-header) {
-    filter: blur(2px);
-  }
-
-  body.touch-device .cabecera .menu-header.show {
-    position: static;
+  .cabecera .logo img {
+    width: 100%;
   }
 }
 
-@media (max-width: 480px) {
-  .cabecera .menu-header.show {
-    flex-direction: column;
-  }
-}
-
-/******  9228d18f-3bc6-4be5-bc8d-5bb67f54872d  *******/

@@ -2,8 +2,8 @@ require('dotenv').config();
 const express = require('express');
 const mongoose = require('mongoose');
 const cors = require('cors');
-const config = require('./config');
-require('./db');  // Conectar a la base de datos de MongoDB
+const config = require('./backend/config/config');
+require('./backend/config/db');  // Conectar a la base de datos de MongoDB
 
 const app = express();
 const PORT = config.port;

@@ -1,17 +1,12 @@
-// Importar mongoose
 const mongoose = require('mongoose');
+require('dotenv').config(); // Cargar variables de entorno desde .env
 
-// Obtener la URI de conexión desde la variable de entorno
-const dbURI = process.env.MONGO_URI || 'mongodb+srv://emanuel:<db_password>@cluster0.t0dck.mongodb.net/myDatabase?retryWrites=true&w=majority';
+const mongoURI = process.env.MONGO_URI; // Usar la variable de entorno MONGO_URI
 
-// Conectar a MongoDB Atlas
-mongoose.connect(dbURI, { useNewUrlParser: true, useUnifiedTopology: true })
+mongoose.connect(mongoURI, { useNewUrlParser: true, useUnifiedTopology: true })
     .then(() => {
-        console.log('✅ Conectado a MongoDB Atlas');
+        console.log('✅ Conectado a MongoDB');
     })
-    .catch(err => {
-        console.log('❌ Error al conectar a MongoDB: ', err);
+    .catch((err) => {
+        console.log('❌ Error al conectar a MongoDB:', err);
     });
-
-// Exportar mongoose para su uso en otras partes de la aplicación
-module.exports = mongoose;

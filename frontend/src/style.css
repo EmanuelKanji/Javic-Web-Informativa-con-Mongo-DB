@@ -273,59 +273,32 @@ button:hover {
   color: #f0a500;
 }
 
+/*************  ✨ Codeium Command ⭐  *************/
 @media (max-width: 768px) {
-  .cabecera {
-    position: fixed;
-    top: 0;
-    right: 0;
-    left: 0;
-    z-index: 1000;
-    background-color: rgba(0, 0, 0, 0.9);
-    padding: 10px 20px;
-    display: flex;
-    justify-content: space-between;
-    align-items: center;
-  }
-
-  .cabecera .menu-header {
+  .menu-header {
     display: none;
     position: absolute;
-    top: 100%;
+    top: 70px;
     right: 0;
-    left: 0;
-    background-color: rgba(0, 0, 0, 0.9);
-    padding: 20px;
-    width: 100%;
-    display: flex;
-    flex-direction: column;
-    align-items: center;
+    background-color: #444;
+    padding: 10px;
+    border-radius: 10px 0 0 10px;
   }
 
-  .cabecera .menu-header.show {
-    display: flex;
+  .menu-header li {
+    margin: 10px 0;
   }
 
-  .cabecera .menu-header a {
-    padding: 10px 20px;
-    text-align: center;
-    width: 100%;
-    color: #fff;
-    text-decoration: none;
-    transition: background-color 0.3s ease;
+  .menu-header a {
+    display: block;
   }
 
-  .cabecera .menu-header a:hover {
-    background-color: rgba(240, 165, 0, 0.9);
+  .logo {
+    cursor: pointer;
   }
 
-  .cabecera .logo {
-    position: relative;
-    z-index: 1001;
-    width: 150px;
-  }
-
-  .cabecera .logo img {
-    width: 100%;
+  .logo:hover + .menu-header, .menu-header:hover {
+    display: block;
   }
 }
-
+/******  ff1f65fc-5e91-4d34-89e6-5bdc177595cb  *******/

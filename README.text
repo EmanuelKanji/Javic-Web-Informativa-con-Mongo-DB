@@ -1,0 +1,99 @@
+# ProyectoJavic
+
+**Desarrollado por:** Emanuel Aguilera
+
+## Descripción
+ProyectoJavic es un sitio web informativo que permite a los usuarios enviar mensajes a través de un formulario, almacenándolos en una base de datos en MongoDB Atlas. El frontend está desarrollado con HTML, CSS y JavaScript, y el backend con Node.js y Express. La aplicación está desplegada en **Netlify** (frontend) y **Render** (backend).
+
+## Tecnologías Utilizadas
+### Frontend:
+- HTML5
+- CSS3
+- JavaScript (Vanilla)
+- Netlify (Despliegue)
+
+### Backend:
+- Node.js
+- Express.js
+- MongoDB Atlas (Base de datos)
+- Mongoose (ODM para MongoDB)
+- CORS
+- Dotenv (Gestión de variables de entorno)
+- Render (Despliegue del backend)
+
+## Estructura del Proyecto
+```
+ProyectoJavic/
+│-- backend/
+│   ├── config/
+│   │   ├── config.js
+│   │   ├── db.js
+│   ├── models/
+│   │   ├── Contact.js
+│   ├── routes/
+│   │   ├── contactRoutes.js
+│
+│-- frontend/
+│   ├── index.html
+│   ├── media/
+│   │   ├── 01.jpg
+│   │   ├── 02.jpg
+│   │   ├── 03.jpg
+│   │   ├── 04.jpg
+│   │   ├── 05.jpg
+│   │   ├── 06.jpg
+│   │   ├── 07.jpg
+│   │   ├── 08.jpg
+│   │   ├── 09.jpg
+│   │   ├── 10.jpg
+│   │   ├── 11.jpg
+│   │   ├── 12.jpg
+│   ├── src/
+│   │   ├── script.js
+│   │   ├── style.css
+│
+│-- .gitignore
+│-- app.js
+│-- package-lock.json
+│-- package.json
+│-- render.yaml
+│-- server.js
+```
+
+## Instalación y Configuración
+### 1️⃣ Clonar el Repositorio
+```bash
+git clone https://github.com/TU_USUARIO/ProyectoJavic.git
+cd ProyectoJavic
+```
+
+### 2️⃣ Configurar Variables de Entorno
+Crear un archivo **.env** en la raíz del proyecto y agregar:
+```
+MONGO_URI=mongodb+srv://<usuario>:<password>@cluster0.t0dck.mongodb.net/
+PORT=5000
+```
+
+### 3️⃣ Instalar Dependencias
+```bash
+npm install
+```
+
+### 4️⃣ Ejecutar el Servidor
+```bash
+node server.js
+```
+El backend correrá en `http://localhost:5000`
+
+### 5️⃣ Despliegue
+- **Frontend:** Netlify (`https://javic.netlify.app/`)
+- **Backend:** Render (URL proporcionada en Render)
+
+## Uso
+1. Acceder a `https://javic.netlify.app/`
+2. Llenar el formulario de contacto y enviarlo.
+3. La información se almacenará en MongoDB Atlas.
+
+## Autor
+**Emanuel Aguilera** - Desarrollador del proyecto.
+

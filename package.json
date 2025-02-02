@@ -1,19 +1,22 @@
 {
-  "name": "backend",
+  "name": "proyecto-javic",
   "version": "1.0.0",
-  "main": "config.js",
+  "description": "Un proyecto para gestionar contactos",
+  "main": "server.js",  
   "scripts": {
-    "test": "echo \"Error: no test specified\" && exit 1",
-    "start": "node server.js"
+    "start": "node server.js", 
+    "dev": "nodemon server.js"
   },
-  "keywords": [],
-  "author": "",
-  "license": "ISC",
   "dependencies": {
+    "express": "^4.17.1",
+    "mongoose": "^6.0.0",
     "cors": "^2.8.5",
-    "dotenv": "^16.4.7",
-    "express": "^4.21.2",
-    "mongoose": "^8.9.6"
+    "dotenv": "^16.0.0" 
   },
-  "description": ""
+  "devDependencies": {
+    "nodemon": "^2.0.15" 
+  },
+  "author": "Tu nombre o el nombre de tu equipo",
+  "license": "MIT"
 }
+

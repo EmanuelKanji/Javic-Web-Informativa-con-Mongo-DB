@@ -15,7 +15,7 @@ document.addEventListener('DOMContentLoaded', () => {
         };
 
         // Cambia la URL a la URL de tu servicio en Render
-        const apiUrl = 'https://tu-aplicacion-en-render.onrender.com/api/contacto'; // Reemplaza con la URL correcta
+        const apiUrl = 'https://proyectojavic.onrender.com/api/contacto'; // Reemplaza con la URL correcta
 
         const response = await fetch(apiUrl, {
             method: 'POST',

@@ -46,4 +46,12 @@ app.get('/users', async (req, res) => {
     res.status(200).send(users);
   } catch (err) {
     console.error('Error al obtener los usuarios:', err);
-    res.status(500).send({ message: 
+    res.status(500).send({ message: 'Error al obtener los usuarios' });
+  }
+});
+
+// Configuración del puerto para que escuche en el adecuado
+const PORT = process.env.PORT || 5000; // Si no hay un puerto definido en las variables de entorno, usará 5000
+app.listen(PORT, () => {
+  console.log(`Servidor escuchando en el puerto ${PORT}`);
+});

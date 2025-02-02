@@ -1,6 +1,8 @@
 require('dotenv').config();
 
-module.exports = {
-    mongoURI: process.env.MONGO_URI || 'mongodb://localhost:27017/javic',
-    port: process.env.PORT || 5000
+const config = {
+  port: process.env.PORT || 5000,  // El puerto donde corre el servidor
+  mongoURI: 'mongodb+srv://emanuel:javicarriendo@cluster0.t0dck.mongodb.net/',  // URL para la conexión a MongoDB Atlas
 };
+
+module.exports = config;

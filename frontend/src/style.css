@@ -273,6 +273,7 @@ button:hover {
   color: #f0a500;
 }
 
+/*************  ✨ Codeium Command 🌟  *************/
 @media (max-width: 768px) {
   .cabecera {
     flex-direction: column;
@@ -284,6 +285,13 @@ button:hover {
   .cabecera .menu-header {
     display: none;
     flex-direction: column;
+    position: fixed;
+    top: 0;
+    left: 0;
+    right: 0;
+    bottom: 0;
+    background-color: rgba(38, 39, 43, 0.9);
+    z-index: 1001;
   }
 
   .cabecera .menu-header.show {
@@ -299,6 +307,18 @@ button:hover {
   .cabecera .logo {
     margin-bottom: 20px;
   }
+
+  .cabecera .menu-header.show + * {
+    pointer-events: none;
+  }
+
+  .cabecera .menu-header.show ~ *:not(.menu-header) {
+    filter: blur(2px);
+  }
+
+  body.touch-device .cabecera .menu-header.show {
+    position: static;
+  }
 }
 
 @media (max-width: 480px) {
@@ -307,3 +327,4 @@ button:hover {
   }
 }
 
+/******  9228d18f-3bc6-4be5-bc8d-5bb67f54872d  *******/

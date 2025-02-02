@@ -4,8 +4,8 @@ console.log("🔍 MONGO_URI:", process.env.MONGO_URI);
 const express = require('express');
 const mongoose = require('mongoose');
 const cors = require('cors');
-const config = require('./backend/config');
-require('./backend/db'); 
+const config = require('./backend/config/config');
+require('./backend/config/db'); 
 
 const app = express();
 const PORT = config.port;

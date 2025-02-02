@@ -272,8 +272,6 @@ button:hover {
 .footer-links a:hover {
   color: #f0a500;
 }
-
-/*************  ✨ Codeium Command ⭐  *************/
 @media (max-width: 768px) {
   .cabecera {
     position: fixed;
@@ -295,14 +293,26 @@ button:hover {
 
   .menu-header {
     display: none;
+    flex-direction: column;
+    position: absolute;
+    top: 100%;
+    left: 0;
+    width: 100%;
+    background-color: rgba(255, 255, 255, 0.9);
+    box-shadow: 0 4px 8px rgba(0, 0, 0, 0.2);
+    transition: max-height 0.3s ease;
+    max-height: 0;
+    overflow: hidden;
   }
 
   .cabecera:hover .menu-header {
     display: flex;
+    max-height: 300px;
   }
 
   .menu-header li {
     padding: 10px;
+    border-bottom: 1px solid #ddd;
   }
 
   .menu-header li:hover {
@@ -312,20 +322,12 @@ button:hover {
   .menu-header a {
     color: #333;
     text-decoration: none;
+    display: block;
+    width: 100%;
   }
 
   .menu-header a:hover {
     color: #fff;
   }
-
-  .menu-header {
-    flex-direction: column;
-    position: absolute;
-    top: 100%;
-    left: 0;
-    width: 100%;
-    background-color: rgba(255, 255, 255, 0.9);
-    box-shadow: 0 4px 8px rgba(0, 0, 0, 0.2);
-  }
 }
-/******  82cd779c-33de-4dc4-b12b-a7f18fe64058  *******/
+

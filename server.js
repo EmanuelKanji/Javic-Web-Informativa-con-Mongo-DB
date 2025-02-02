@@ -12,7 +12,7 @@ app.use(cors());
 app.use(express.json());  // Habilitar el parsing de JSON en las peticiones
 
 // Importar las rutas
-const contactRoutes = require('./routes/contactRoutes');
+const contactRoutes = require('./backend/routes/contactRoutes');
 app.use('/api/contacto', contactRoutes);
 
 // Iniciar el servidor

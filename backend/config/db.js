@@ -1,12 +1,17 @@
 const mongoose = require('mongoose');
-require('dotenv').config(); // Cargar variables de entorno desde .env
+require('dotenv').config(); // Asegúrate de tener dotenv configurado
 
-const mongoURI = process.env.MONGO_URI; // Usar la variable de entorno MONGO_URI
-
-mongoose.connect(mongoURI, { useNewUrlParser: true, useUnifiedTopology: true })
-    .then(() => {
-        console.log('✅ Conectado a MongoDB');
-    })
-    .catch((err) => {
-        console.log('❌ Error al conectar a MongoDB:', err);
+const connectDB = async () => {
+  try {
+    await mongoose.connect(process.env.MONGO_URI, {
+      useNewUrlParser: true,
+      useUnifiedTopology: true,
     });
+    console.log('✅ Conectado a MongoDB');
+  } catch (err) {
+    console.error('❌ Error al conectar a MongoDB:', err.message);
+    process.exit(1); // Termina el proceso si la conexión falla
+  }
+};
+
+module.exports = connectDB;

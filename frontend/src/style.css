@@ -293,21 +293,14 @@ button:hover {
 
   .menu-header {
     display: none;
-    flex-direction: column;
     position: absolute;
     top: 100%;
-    left: 0;
-    width: 100%;
+    right: 0;
     background-color: rgba(255, 255, 255, 0.9);
     box-shadow: 0 4px 8px rgba(0, 0, 0, 0.2);
     transition: max-height 0.3s ease;
     max-height: 0;
     overflow: hidden;
-  }
-
-  .cabecera:hover .menu-header {
-    display: flex;
-    max-height: 300px;
   }
 
   .menu-header li {
@@ -328,6 +321,35 @@ button:hover {
 
   .menu-header a:hover {
     color: #fff;
+  }
+
+  .menu-header-btn {
+    background-color: #f0a500;
+    color: #fff;
+    padding: 10px 20px;
+    border-radius: 5px;
+    cursor: pointer;
+    transition: background-color 0.3s ease;
+  }
+
+  .menu-header-btn:hover {
+    background-color: #d98c00;
+  }
+
+  .menu-header-btn::before {
+    content: "\f0c9";
+    font-family: FontAwesome;
+    margin-right: 10px;
+  }
+
+  .cabecera:hover .menu-header {
+    display: block;
+    max-height: 300px;
+  }
+
+  #servicios {
+    background-size: cover;
+    background-position: center;
   }
 }
 

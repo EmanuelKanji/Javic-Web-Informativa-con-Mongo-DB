@@ -1,0 +1,10 @@
+services:
+  - type: web
+    name: javic-backend
+    env: node
+    buildCommand: "npm install"
+    startCommand: "node server.js"
+    envVars:
+      - key: MONGO_URI
+        value: ${MONGO_URI}  # Si usas variables de entorno, como tu conexión a MongoDB
+    branch: main

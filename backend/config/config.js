@@ -1,8 +1,8 @@
 require('dotenv').config();
 
 const config = {
-  port: process.env.PORT || 5000,  // El puerto donde corre el servidor
-  mongoURI: process.env.MONGO_URI  // Usamos la variable de entorno que contiene la URL de conexión
+  port: process.env.PORT || 10000,  // Puerto de Render
+  mongoURI: process.env.MONGO_URI  // URI de MongoDB Atlas
 };
 
 module.exports = config;

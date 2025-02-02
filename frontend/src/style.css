@@ -275,30 +275,57 @@ button:hover {
 
 /*************  ✨ Codeium Command ⭐  *************/
 @media (max-width: 768px) {
+  .cabecera {
+    position: fixed;
+    top: 0;
+    width: 100%;
+    background-color: rgba(255, 255, 255, 0.9);
+    padding: 10px 20px;
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    z-index: 1000;
+    transition: transform 0.3s ease;
+    overflow: hidden;
+  }
+
+  .cabecera:hover {
+    transform: scale(1.01);
+  }
+
   .menu-header {
     display: none;
-    position: absolute;
-    top: 70px;
-    right: 0;
-    background-color: #444;
-    padding: 10px;
-    border-radius: 10px 0 0 10px;
+  }
+
+  .cabecera:hover .menu-header {
+    display: flex;
   }
 
   .menu-header li {
-    margin: 10px 0;
+    padding: 10px;
+  }
+
+  .menu-header li:hover {
+    background-color: #f0a500;
   }
 
   .menu-header a {
-    display: block;
+    color: #333;
+    text-decoration: none;
   }
 
-  .logo {
-    cursor: pointer;
+  .menu-header a:hover {
+    color: #fff;
   }
 
-  .logo:hover + .menu-header, .menu-header:hover {
-    display: block;
+  .menu-header {
+    flex-direction: column;
+    position: absolute;
+    top: 100%;
+    left: 0;
+    width: 100%;
+    background-color: rgba(255, 255, 255, 0.9);
+    box-shadow: 0 4px 8px rgba(0, 0, 0, 0.2);
   }
 }
-/******  ff1f65fc-5e91-4d34-89e6-5bdc177595cb  *******/
+/******  82cd779c-33de-4dc4-b12b-a7f18fe64058  *******/

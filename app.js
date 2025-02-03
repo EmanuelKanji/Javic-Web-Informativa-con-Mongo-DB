@@ -36,9 +36,6 @@ app.get('/', (req, res) => {
 app.post('/api/contacto', async (req, res) => {
   try {
     const newContact = req.body;  // Suponiendo que los datos del formulario se envíen en el cuerpo de la solicitud
-    // Aquí puedes agregar el modelo y guardar los datos en MongoDB si lo necesitas.
-    // Por ejemplo: 
-    // const contact = new Contact(newContact);
     // await contact.save();
     res.status(201).json({ message: 'Mensaje guardado con éxito' });
   } catch (error) {

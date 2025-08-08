@@ -33,6 +33,9 @@ module.exports = {
     }),
   ],
   devServer: {
-    static: './public',
+    static: {
+      directoy: path.resolve(__dirname, 'public'),
+    },
+    historyApiFallback: true, // Para manejar rutas con React Router
   },
 };

@@ -11,14 +11,29 @@ const contactRoutes = require('./routes/contactRoutes');
 const app = express();
 const PORT = config.port;
 
-// Middleware CORS (temporalmente abierto a todos)
-app.use(cors());
+// Lista de orígenes permitidos
+const allowedOrigins = [
+  'http://localhost:5173', // Desarrollo local
+  'https://javicltda.netlify.app' // Producción en Netlify
+];
 
-// Middleware para JSON
+// Middleware de CORS
+app.use(cors({
+  origin: function (origin, callback) {
+    if (!origin || allowedOrigins.includes(origin)) {
+      callback(null, true);
+    } else {
+      callback(new Error('CORS no permitido'));
+    }
+  }
+}));
+
 app.use(express.json());
 
 // Rutas API
 app.use('/api/contacto', contactRoutes);
+
+// 🚫 No servimos React aquí, ya que el frontend está en Netlify
 
 // Iniciar servidor
 app.listen(PORT, () => {

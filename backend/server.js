@@ -12,10 +12,24 @@ const contactRoutes = require('./routes/contactRoutes');
 const app = express();
 const PORT = config.port;
 
-// Middlewares
-app.use(cors());
-app.use(express.json());
+// Lista de orígenes permitidos
+const allowedOrigins = [
+  'http://localhost:5173', // para desarrollo
+  'https://javicltda.netlify.app' // producción
+];
 
+// Middlewares
+app.use(cors({
+  origin: (origin, callback) => {
+    if (!origin || allowedOrigins.includes(origin)) {
+      return callback(null, true);
+    } else {
+      return callback(new Error('Not allowed by CORS'));
+    }
+  }
+}));
+
+app.use(express.json());
 // Rutas API
 app.use('/api/contacto', contactRoutes);
 

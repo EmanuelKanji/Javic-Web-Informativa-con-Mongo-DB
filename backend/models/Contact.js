@@ -1,14 +1,30 @@
 const mongoose = require('mongoose');
 
-// Definir el esquema para los mensajes de contacto
+// Esquema del formulario de contacto
 const contactSchema = new mongoose.Schema({
-  nombre: { type: String, required: true },
-  email: { type: String, required: true },
-  telefono: { type: String, required: true },
-  mensaje: { type: String, required: true }
+  name: {
+    type: String,
+    required: [true, 'El nombre es obligatorio'],
+    trim: true,
+  },
+  email: {
+    type: String,
+    required: [true, 'El correo es obligatorio'],
+    trim: true,
+    lowercase: true,
+    match: [/\S+@\S+\.\S+/, 'Correo inválido']
+  },
+  phone: {
+    type: String,
+    required: [true, 'El teléfono es obligatorio'],
+    trim: true
+  },
+  createdAt: {
+    type: Date,
+    default: Date.now
+  }
 });
 
-// Crear y exportar el modelo
 const Contact = mongoose.model('Contact', contactSchema);
 
 module.exports = Contact;

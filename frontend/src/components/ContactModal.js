@@ -102,7 +102,7 @@ function ContactModal({ isOpen, onClose }) {
     }
 
     try {
-      const response = await fetch("http://localhost:10000/api/contacto", {
+      const response = await fetch("https://javic-backend.onrender.com/api/contacto", {
         method: "POST",
         headers: {
           "Content-Type": "application/json",

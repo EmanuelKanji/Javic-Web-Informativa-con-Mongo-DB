@@ -1,7 +1,7 @@
 import React, { useEffect, useRef, useState } from "react";
 import styled from "styled-components";
 
-// === Estilos ===
+// === Estilos (sin cambios) ===
 const ModalOverlay = styled.div`
   position: fixed;
   inset: 0;
@@ -76,20 +76,22 @@ const Message = styled.p`
 function ContactModal({ isOpen, open, onClose }) {
   const visible = typeof isOpen !== "undefined" ? isOpen : !!open;
 
-  // solo 3 campos
+  // Estado del formulario (mantengo nombres en español para la UI)
   const [form, setForm] = useState({ nombre: "", email: "", telefono: "" });
   const [message, setMessage] = useState("");
   const [success, setSuccess] = useState(null);
   const [loading, setLoading] = useState(false);
   const dialogRef = useRef(null);
 
-  // ESC + bloquear scroll (hook antes del return condicional)
+  // Bloqueo de scroll + ESC (hook antes del return condicional)
   useEffect(() => {
     if (!visible) return;
+
     const onKey = (e) => { if (e.key === "Escape") onClose?.(); };
     document.addEventListener("keydown", onKey);
     const prev = document.body.style.overflow;
     document.body.style.overflow = "hidden";
+
     return () => {
       document.removeEventListener("keydown", onKey);
       document.body.style.overflow = prev;
@@ -103,17 +105,16 @@ function ContactModal({ isOpen, open, onClose }) {
   };
 
   const handleChange = (e) => {
-    setForm((prev) => ({ ...prev, [e.target.name]: e.target.value }));
+    setForm(prev => ({ ...prev, [e.target.name]: e.target.value }));
     if (message) { setMessage(""); setSuccess(null); }
   };
 
   const handleSubmit = async (e) => {
     e.preventDefault();
 
-    // Validación con trim
-    const nombre = form.nombre.trim();
-    const email = form.email.trim();
-    const telefono = form.telefono.trim();
+    const nombre   = String(form.nombre || "").trim();
+    const email    = String(form.email || "").trim();
+    const telefono = String(form.telefono || "").trim();
 
     if (!nombre || !email || !telefono) {
       setMessage("Por favor completa todos los campos.");
@@ -121,29 +122,33 @@ function ContactModal({ isOpen, open, onClose }) {
       return;
     }
 
-    const emailOk = /^(?:[a-zA-Z0-9_'^&+%\-]+(?:\.[a-zA-Z0-9_'^&+%\-]+)*|\".+\")@(?:[a-zA-Z0-9-]+\.)+[a-zA-Z]{2,}$/.test(email);
+    const emailOk =
+      /^(?:[a-zA-Z0-9_'^&+%\-]+(?:\.[a-zA-Z0-9_'^&+%\-]+)*|\".+\")@(?:[a-zA-Z0-9-]+\.)+[a-zA-Z]{2,}$/
+        .test(email);
     if (!emailOk) {
       setMessage("Escribe un correo válido.");
       setSuccess(false);
       return;
     }
 
+    // 🔁 Mapeo a lo que espera tu backend: name, email, phone
+    const payload = { name: nombre, email, phone: telefono };
+
     setLoading(true);
     try {
       const response = await fetch("https://proyectojavic.onrender.com/api/contacto", {
         method: "POST",
         headers: { "Content-Type": "application/json" },
-        body: JSON.stringify({ nombre, email, telefono }),
+        body: JSON.stringify(payload),
       });
 
-      const result = await response.json().catch(() => ({}));
-
+      const data = await response.json().catch(() => ({}));
       if (response.ok) {
         setMessage("¡Mensaje enviado con éxito!");
         setSuccess(true);
         setForm({ nombre: "", email: "", telefono: "" });
       } else {
-        setMessage(result?.message || "Error al enviar el formulario.");
+        setMessage(data?.message || "Error al enviar el formulario.");
         setSuccess(false);
       }
     } catch (err) {
@@ -159,7 +164,6 @@ function ContactModal({ isOpen, open, onClose }) {
       <ModalContent ref={dialogRef} onClick={(e) => e.stopPropagation()}>
         <Title>Solicitar Cotización</Title>
 
-        {/* form para submit y preventDefault */}
         <form onSubmit={handleSubmit} noValidate>
           <Input
             name="nombre"

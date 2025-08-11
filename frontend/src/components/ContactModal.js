@@ -81,10 +81,10 @@ function ContactModal({ isOpen, open, onClose }) {
   const [loading, setLoading] = useState(false);
   const dialogRef = useRef(null);
 
-  if (!visible) return null;
-
-  // ESC + bloquear scroll
+  // ESC + bloquear scroll (hook antes del return condicional)
   useEffect(() => {
+    if (!visible) return;
+
     const onKey = (e) => { if (e.key === "Escape") onClose?.(); };
     document.addEventListener("keydown", onKey);
     const prev = document.body.style.overflow;
@@ -93,7 +93,9 @@ function ContactModal({ isOpen, open, onClose }) {
       document.removeEventListener("keydown", onKey);
       document.body.style.overflow = prev;
     };
-  }, [onClose]);
+  }, [visible, onClose]);
+
+  if (!visible) return null;
 
   const handleOverlayClick = (e) => {
     if (e.target === e.currentTarget) onClose?.();

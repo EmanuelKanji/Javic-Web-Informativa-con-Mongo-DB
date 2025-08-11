@@ -73,7 +73,11 @@ function Home() {
         </HeroCard>
       </HeroContainer>
 
-      <ContactModal isOpen={isModalOpen} onClose={() => setModalOpen(false)} />
+      <ContactModal
+        isOpen={isModalOpen}
+        open={isModalOpen}
+        onClose={() => setModalOpen(false)}
+      />
     </>
   );
 }

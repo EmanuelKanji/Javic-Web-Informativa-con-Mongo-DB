@@ -1,7 +1,7 @@
 import React, { useEffect, useRef, useState } from "react";
 import styled from "styled-components";
 
-// === Estilos (idénticos) ===
+// === Estilos ===
 const ModalOverlay = styled.div`
   position: fixed;
   inset: 0;
@@ -76,7 +76,7 @@ const Message = styled.p`
 function ContactModal({ isOpen, open, onClose }) {
   const visible = typeof isOpen !== "undefined" ? isOpen : !!open;
 
-  // estado (solo 3 campos)
+  // solo 3 campos
   const [form, setForm] = useState({ nombre: "", email: "", telefono: "" });
   const [message, setMessage] = useState("");
   const [success, setSuccess] = useState(null);
@@ -86,12 +86,10 @@ function ContactModal({ isOpen, open, onClose }) {
   // ESC + bloquear scroll (hook antes del return condicional)
   useEffect(() => {
     if (!visible) return;
-
     const onKey = (e) => { if (e.key === "Escape") onClose?.(); };
     document.addEventListener("keydown", onKey);
     const prev = document.body.style.overflow;
     document.body.style.overflow = "hidden";
-
     return () => {
       document.removeEventListener("keydown", onKey);
       document.body.style.overflow = prev;
@@ -105,18 +103,25 @@ function ContactModal({ isOpen, open, onClose }) {
   };
 
   const handleChange = (e) => {
-    setForm({ ...form, [e.target.name]: e.target.value });
+    setForm((prev) => ({ ...prev, [e.target.name]: e.target.value }));
     if (message) { setMessage(""); setSuccess(null); }
   };
 
-  const handleSubmit = async () => {
-    // Validación con 3 campos
-    if (!form.nombre || !form.email || !form.telefono) {
+  const handleSubmit = async (e) => {
+    e.preventDefault();
+
+    // Validación con trim
+    const nombre = form.nombre.trim();
+    const email = form.email.trim();
+    const telefono = form.telefono.trim();
+
+    if (!nombre || !email || !telefono) {
       setMessage("Por favor completa todos los campos.");
       setSuccess(false);
       return;
     }
-    const emailOk = /.+@.+\..+/.test(form.email);
+
+    const emailOk = /^(?:[a-zA-Z0-9_'^&+%\-]+(?:\.[a-zA-Z0-9_'^&+%\-]+)*|\".+\")@(?:[a-zA-Z0-9-]+\.)+[a-zA-Z]{2,}$/.test(email);
     if (!emailOk) {
       setMessage("Escribe un correo válido.");
       setSuccess(false);
@@ -128,12 +133,7 @@ function ContactModal({ isOpen, open, onClose }) {
       const response = await fetch("https://proyectojavic.onrender.com/api/contacto", {
         method: "POST",
         headers: { "Content-Type": "application/json" },
-        // solo nombre, email y telefono
-        body: JSON.stringify({
-          nombre: form.nombre,
-          email: form.email,
-          telefono: form.telefono,
-        }),
+        body: JSON.stringify({ nombre, email, telefono }),
       });
 
       const result = await response.json().catch(() => ({}));
@@ -159,16 +159,39 @@ function ContactModal({ isOpen, open, onClose }) {
       <ModalContent ref={dialogRef} onClick={(e) => e.stopPropagation()}>
         <Title>Solicitar Cotización</Title>
 
-        <Input name="nombre" placeholder="Nombre" value={form.nombre} onChange={handleChange} />
-        <Input type="email" name="email" placeholder="Correo" value={form.email} onChange={handleChange} />
-        <Input type="tel" name="telefono" placeholder="Teléfono" value={form.telefono} onChange={handleChange} />
+        {/* form para submit y preventDefault */}
+        <form onSubmit={handleSubmit} noValidate>
+          <Input
+            name="nombre"
+            placeholder="Nombre"
+            value={form.nombre}
+            onChange={handleChange}
+            autoComplete="name"
+          />
+          <Input
+            type="email"
+            name="email"
+            placeholder="Correo"
+            value={form.email}
+            onChange={handleChange}
+            autoComplete="email"
+          />
+          <Input
+            type="tel"
+            name="telefono"
+            placeholder="Teléfono"
+            value={form.telefono}
+            onChange={handleChange}
+            autoComplete="tel"
+          />
 
-        <div style={{ marginTop: 6 }}>
-          <Button onClick={handleSubmit} disabled={loading}>
-            {loading ? "Enviando..." : "Enviar"}
-          </Button>
-          <CloseButton onClick={onClose}>Cerrar</CloseButton>
-        </div>
+          <div style={{ marginTop: 6 }}>
+            <Button type="submit" disabled={loading}>
+              {loading ? "Enviando..." : "Enviar"}
+            </Button>
+            <CloseButton type="button" onClick={onClose}>Cerrar</CloseButton>
+          </div>
+        </form>
 
         {message && <Message $success={success}>{message}</Message>}
       </ModalContent>

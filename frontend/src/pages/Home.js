@@ -60,8 +60,6 @@ const Button = styled.button`
 
 function Home() {
   const [isModalOpen, setModalOpen] = useState(false);
-  const { content } = useContext(ContentContext);
-
   return (
     <>
       <HeroContainer>

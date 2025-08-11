@@ -1,7 +1,7 @@
 import React, { useEffect, useRef, useState } from "react";
 import styled from "styled-components";
 
-// === Estilos ===
+// === Estilos (idénticos) ===
 const ModalOverlay = styled.div`
   position: fixed;
   inset: 0;
@@ -75,7 +75,9 @@ const Message = styled.p`
 
 function ContactModal({ isOpen, open, onClose }) {
   const visible = typeof isOpen !== "undefined" ? isOpen : !!open;
-  const [form, setForm] = useState({ nombre: "", email: "", telefono: "", mensaje: "" });
+
+  // estado (solo 3 campos)
+  const [form, setForm] = useState({ nombre: "", email: "", telefono: "" });
   const [message, setMessage] = useState("");
   const [success, setSuccess] = useState(null);
   const [loading, setLoading] = useState(false);
@@ -89,6 +91,7 @@ function ContactModal({ isOpen, open, onClose }) {
     document.addEventListener("keydown", onKey);
     const prev = document.body.style.overflow;
     document.body.style.overflow = "hidden";
+
     return () => {
       document.removeEventListener("keydown", onKey);
       document.body.style.overflow = prev;
@@ -107,7 +110,8 @@ function ContactModal({ isOpen, open, onClose }) {
   };
 
   const handleSubmit = async () => {
-    if (!form.nombre || !form.email || !form.telefono || !form.mensaje) {
+    // Validación con 3 campos
+    if (!form.nombre || !form.email || !form.telefono) {
       setMessage("Por favor completa todos los campos.");
       setSuccess(false);
       return;
@@ -124,7 +128,12 @@ function ContactModal({ isOpen, open, onClose }) {
       const response = await fetch("https://proyectojavic.onrender.com/api/contacto", {
         method: "POST",
         headers: { "Content-Type": "application/json" },
-        body: JSON.stringify(form),
+        // solo nombre, email y telefono
+        body: JSON.stringify({
+          nombre: form.nombre,
+          email: form.email,
+          telefono: form.telefono,
+        }),
       });
 
       const result = await response.json().catch(() => ({}));
@@ -132,7 +141,7 @@ function ContactModal({ isOpen, open, onClose }) {
       if (response.ok) {
         setMessage("¡Mensaje enviado con éxito!");
         setSuccess(true);
-        setForm({ nombre: "", email: "", telefono: "", mensaje: "" });
+        setForm({ nombre: "", email: "", telefono: "" });
       } else {
         setMessage(result?.message || "Error al enviar el formulario.");
         setSuccess(false);
@@ -153,16 +162,6 @@ function ContactModal({ isOpen, open, onClose }) {
         <Input name="nombre" placeholder="Nombre" value={form.nombre} onChange={handleChange} />
         <Input type="email" name="email" placeholder="Correo" value={form.email} onChange={handleChange} />
         <Input type="tel" name="telefono" placeholder="Teléfono" value={form.telefono} onChange={handleChange} />
-
-        <Input
-          as="textarea"
-          rows="4"
-          name="mensaje"
-          placeholder="Mensaje"
-          value={form.mensaje}
-          onChange={handleChange}
-          style={{ resize: "vertical" }}
-        />
 
         <div style={{ marginTop: 6 }}>
           <Button onClick={handleSubmit} disabled={loading}>

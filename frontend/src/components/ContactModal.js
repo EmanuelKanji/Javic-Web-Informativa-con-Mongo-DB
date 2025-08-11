@@ -13,6 +13,60 @@ const ModalOverlay = styled.div`
   align-items: center;
 `;
 
+const ModalContent = styled.div`
+  background: white;
+  padding: 20px;
+  border-radius: 8px;
+  width: 400px;
+  max-width: 90%;
+  box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
+`;
+
+const Title = styled.h2`
+  margin-bottom: 20px;
+  font-size: 1.5em;
+  text-align: center;
+`;
+
+const Input = styled.input`
+  width: 100%;
+  padding: 10px;
+  margin-bottom: 10px;
+  border: 1px solid #ccc;
+  border-radius: 4px;
+  font-size: 1em;
+`;
+
+const Button = styled.button`
+  width: 100%;
+  padding: 10px;
+  background-color: #007bff;
+  color: white;
+  border: none;
+  border-radius: 4px;
+  font-size: 1em;
+  cursor: pointer;
+  margin-top: 10px;
+
+  &:hover {
+    background-color: #0056b3;
+  }
+`;
+
+const CloseButton = styled(Button)`
+  background-color: #dc3545;
+
+  &:hover {
+    background-color: #a71d2a;
+  }
+`;
+
+const Message = styled.p`
+  margin-top: 10px;
+  color: ${(props) => (props.$success ? "green" : "red")};
+  text-align: center;
+`;
+
 function ContactModal({ isOpen, onClose }) {
   const [form, setForm] = useState({ nombre: "", email: "", telefono: "", mensaje: "" });
   const [message, setMessage] = useState("");

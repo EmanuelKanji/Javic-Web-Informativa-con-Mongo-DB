@@ -1,4 +1,4 @@
-import React, { useState, useContext } from "react";
+import React, { useState } from "react";
 import styled from "styled-components";
 import backgroundImage from "../assets/images/Arriendo-Maquinaria.jpg";
 import ContactModal from "../components/ContactModal";
@@ -60,6 +60,13 @@ const Button = styled.button`
 
 function Home() {
   const [isModalOpen, setModalOpen] = useState(false);
+
+  // Fallback de contenido (ya que no hay ContentContext)
+  const content = {
+    homeTitle: "Bienvenido a Javic",
+    homeSubtitle: "Arriendo de maquinaria y servicios a la comunidad",
+  };
+
   return (
     <>
       <HeroContainer>

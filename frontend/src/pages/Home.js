@@ -1,16 +1,17 @@
-import React, { useState } from "react";
+import React, { useState, useContext } from "react";
 import styled from "styled-components";
 import backgroundImage from "../assets/images/Arriendo-Maquinaria.jpg";
-import ContactModal from "../components/ContactModal";  // ✅ Formulario modal
+import ContactModal from "../components/ContactModal";
+import ContentContext from "../context/ContentContext";
 
 const HeroContainer = styled.div`
-  height: 90vh; /* ✅ Imagen más grande */
+  height: 90vh;
   background-image: url(${backgroundImage});
   background-size: cover;
   background-position: center;
   display: flex;
   align-items: center;
-  justify-content: flex-start; /* ✅ Tarjeta alineada a la izquierda */
+  justify-content: flex-start;
   padding: 2rem;
   color: white;
 
@@ -21,7 +22,7 @@ const HeroContainer = styled.div`
 `;
 
 const HeroCard = styled.div`
-  background: rgba(0, 0, 0, 0.7); /* ✅ Cuadro negro opaco */
+  background: rgba(0, 0, 0, 0.7);
   padding: 2rem;
   border-radius: 12px;
   max-width: 400px;
@@ -60,14 +61,15 @@ const Button = styled.button`
 
 function Home() {
   const [isModalOpen, setModalOpen] = useState(false);
+  const { content } = useContext(ContentContext);
 
   return (
     <>
       <HeroContainer>
         <HeroCard>
-          <Title>¡Bienvenido a Javic!</Title>
-          <Subtitle>Soluciones comunitarias y arriendo de maquinaria.</Subtitle>
-          <Button onClick={() => setModalOpen(true)}>Cotizar Ahora</Button> {/* ✅ Abre el formulario */}
+          <Title>{content.homeTitle}</Title>
+          <Subtitle>{content.homeSubtitle}</Subtitle>
+          <Button onClick={() => setModalOpen(true)}>Cotizar Ahora</Button>
         </HeroCard>
       </HeroContainer>
 

@@ -73,18 +73,17 @@ const Message = styled.p`
   color: ${props => props.$success ? "#5fe3a1" : "#ff6b6b"};
 `;
 
-// === Componente ===
-function ContactModal({ isOpen, onClose }) {
+function ContactModal({ isOpen, open, onClose }) {
+  const visible = typeof isOpen !== "undefined" ? isOpen : !!open;
   const [form, setForm] = useState({ nombre: "", email: "", telefono: "", mensaje: "" });
   const [message, setMessage] = useState("");
   const [success, setSuccess] = useState(null);
   const [loading, setLoading] = useState(false);
   const dialogRef = useRef(null);
 
-  // no render si está cerrado
-  if (!isOpen) return null;
+  if (!visible) return null;
 
-  // Cerrar con ESC y bloquear scroll de fondo
+  // ESC + bloquear scroll
   useEffect(() => {
     const onKey = (e) => { if (e.key === "Escape") onClose?.(); };
     document.addEventListener("keydown", onKey);
@@ -96,7 +95,6 @@ function ContactModal({ isOpen, onClose }) {
     };
   }, [onClose]);
 
-  // Cerrar al clickear fuera
   const handleOverlayClick = (e) => {
     if (e.target === e.currentTarget) onClose?.();
   };
@@ -107,7 +105,6 @@ function ContactModal({ isOpen, onClose }) {
   };
 
   const handleSubmit = async () => {
-    // Validación simple
     if (!form.nombre || !form.email || !form.telefono || !form.mensaje) {
       setMessage("Por favor completa todos los campos.");
       setSuccess(false);

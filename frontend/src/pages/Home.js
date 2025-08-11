@@ -2,7 +2,6 @@ import React, { useState, useContext } from "react";
 import styled from "styled-components";
 import backgroundImage from "../assets/images/Arriendo-Maquinaria.jpg";
 import ContactModal from "../components/ContactModal";
-import ContentContext from "../context/ContentContext";
 
 const HeroContainer = styled.div`
   height: 90vh;

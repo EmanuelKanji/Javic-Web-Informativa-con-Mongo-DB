@@ -43,13 +43,13 @@ const HeroContainer = styled.div`
   }
 
   @media (max-width: ${BP_MD}px) {
-    justify-content: center; /* centrado en tablet/móvil */
-    min-height: 80vh;
+    justify-content: center;
+    min-height: 90vh; // <-- Cambiado de 80vh a 90vh
     padding: 1rem;
   }
 
   @media (max-width: ${BP_SM}px) {
-    min-height: 70vh;
+    min-height: 90vh; // <-- Cambiado de 70vh a 90vh
     padding: 0.75rem;
   }
 `;

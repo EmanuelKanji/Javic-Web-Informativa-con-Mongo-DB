@@ -1,3 +1,15 @@
+/**
+ * Estilos globales para el sitio web
+ * --------------------------------------------------------------------------
+ * - Resetea márgenes y paddings.
+ * - Define tipografía y colores base.
+ * - Estiliza la barra de navegación y enlaces.
+ */
+
+/* =========================
+   BODY
+   - Tipografía y colores base
+   ========================= */
 body {
   margin: 0;
   padding: 0;
@@ -6,11 +18,19 @@ body {
   color: #333;
 }
 
+/* =========================
+   NAVBAR
+   - Fondo blanco y sombra sutil
+   ========================= */
 nav {
   background-color: white;
   box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
 }
 
+/* =========================
+   LISTAS DE NAVEGACIÓN
+   - Layout horizontal y sin viñetas
+   ========================= */
 ul {
   list-style: none;
   padding: 0;
@@ -19,6 +39,10 @@ ul {
   gap: 1rem;
 }
 
+/* =========================
+   ENLACES
+   - Color corporativo y transición en hover
+   ========================= */
 a {
   text-decoration: none;
   color: #004080;

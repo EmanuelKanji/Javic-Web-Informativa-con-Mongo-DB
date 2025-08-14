@@ -1,6 +1,17 @@
+/**
+ * contactController.js
+ * --------------------------------------------------------------------------
+ * - Controlador para el recurso "contacto".
+ * - Maneja la lógica para recibir y almacenar los datos del formulario.
+ */
+
 const Contact = require('../models/Contact');
 
-// Controlador para crear un nuevo contacto (guardar formulario)
+/**
+ * Crea y guarda un nuevo contacto en la base de datos.
+ * @param {Object} req - Request (espera name, email, phone en body)
+ * @param {Object} res - Response
+ */
 const createContact = async (req, res) => {
   try {
     const { name, email, phone } = req.body;

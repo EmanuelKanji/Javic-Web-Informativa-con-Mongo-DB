@@ -1,3 +1,11 @@
+/**
+ * Contact.js (Modelo de Contacto)
+ * --------------------------------------------------------------------------
+ * - Define el esquema de datos para los mensajes recibidos desde el formulario de contacto.
+ * - Valida los campos obligatorios y el formato de correo electrónico.
+ * - Almacena nombre, correo, teléfono y fecha de creación.
+ */
+
 const mongoose = require('mongoose');
 
 // Esquema del formulario de contacto

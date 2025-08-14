@@ -1,15 +1,32 @@
+/**
+ * GlobalStyles
+ * --------------------------------------------------------------------------
+ * - Estilos globales para toda la aplicación usando styled-components.
+ * - Resetea márgenes y paddings, define tipografía y colores base.
+ * - Incluye estilos específicos para Swiper (slider).
+ * - Mejora la visibilidad y usabilidad de los controles de Swiper.
+ */
+
+/* =========================
+   IMPORTS
+   ========================= */
 import { createGlobalStyle } from "styled-components";
 import "swiper/css";
 import "swiper/css/navigation";
 import "swiper/css/pagination";
 
+/* =========================
+   ESTILOS GLOBALES
+   ========================= */
 const GlobalStyles = createGlobalStyle`
+  /* Reset básico */
   * {
     margin: 0;
     padding: 0;
     box-sizing: border-box;
   }
 
+  /* Tipografía y colores base */
   body {
     font-family: 'Oswald', sans-serif;
     background-color: #f0f0f0;
@@ -30,14 +47,16 @@ const GlobalStyles = createGlobalStyle`
     list-style: none;
   }
 
-  /* ✅ Asegurar que Swiper tenga tamaño */
+  /* =========================
+     SWIPER (Slider)
+     - Asegura tamaño y visibilidad de controles
+     ========================= */
   .swiper {
     width: 100%;
     height: auto;
     min-height: 100vh;
   }
 
-  /* ✅ Hacer visibles las flechas */
   .swiper-button-prev,
   .swiper-button-next {
     color: white !important;
